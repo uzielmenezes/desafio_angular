@@ -10,11 +10,12 @@
     />
     <h4 class="text-center text-primary my-3">Boas-vindas</h4>
   </div>
-  <form>
+  <form class="form" (ngSubmit)="login()">
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Login</span>
-      <input
-        id="usuario"
+      <input [(ngModel)]="user"
+        name="user"
+        id="user"
         type="text"
         class="form-control"
         placeholder="Insira seu usuário"
@@ -23,6 +24,8 @@
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Senha</span>
       <input
+        [(ngModel)]="password"
+        name="password"
         id="password"
         type="password"
         class="form-control"
