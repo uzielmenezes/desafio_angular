@@ -10,16 +10,24 @@
     />
     <h4 class="text-center text-primary my-3">Boas-vindas</h4>
   </div>
-  <form class="form" (ngSubmit)="login()">
+  <form class="form" (ngSubmit)="login()" #loginForm="ngForm">
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Login</span>
-      <input [(ngModel)]="user"
+      <input
+        [(ngModel)]="user"
         name="user"
         id="user"
         type="text"
         class="form-control"
         placeholder="Insira seu usuário"
+        #userField="ngModel"
+        required
       />
+      <app-message
+        *ngIf="userField.invalid && userField.touched"
+        class="input-group"
+        message="Usuário obrigatório"
+      ></app-message>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Senha</span>
@@ -30,10 +38,21 @@
         type="password"
         class="form-control"
         placeholder="Insira sua senha"
+        #passwordField="ngModel"
+        required
       />
+      <app-message
+        *ngIf="passwordField.invalid && passwordField.touched"
+        class="input-group"
+        message="Senha obrigatória"
+      ></app-message>
     </div>
-    <button class="form-control btn btn-primary btn-block" type="submit">
-        Entrar
+    <button
+      class="form-control btn btn-primary btn-block"
+      type="submit"
+      [disabled]="loginForm.invalid"
+    >
+      Entrar
     </button>
   </form>
 </div>
