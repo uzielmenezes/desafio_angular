@@ -21,6 +21,11 @@
         *ngIf="newUserForm.get('userName')?.errors?.['required'] && newUserForm.get('userName')?.touched"
         message="Usuário obrigatório"
       ></app-message>
+      <app-message
+        class="input-group"
+        *ngIf="newUserForm.get('userName')?.errors?.['knownUser']"
+        message="Usuário já existe"
+      ></app-message>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Nome</span>
