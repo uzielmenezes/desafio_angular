@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +10,13 @@ import { NewUserComponent } from './new-user/new-user.component';
 
 @NgModule({
   declarations: [HomeComponent, LoginComponent, NewUserComponent],
-  imports: [CommonModule, HomeRoutingModule, FormsModule, MessageModule],
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    FormsModule,
+    MessageModule,
+    ReactiveFormsModule,
+  ],
   exports: [HomeComponent],
 })
 export class HomeModule {}

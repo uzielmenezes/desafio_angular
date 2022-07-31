@@ -1,29 +1,67 @@
 <div class="container-fluid bg-color m-auto p-5">
   <h4 class="text-center text-primary my-3">Novo Cadastro</h4>
-  <form class="form mt-4">
+  <form class="form mt-4" [formGroup]="newUserForm" (submit)="register()">
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Login</span>
       <input
+        formControlName="userName"
         type="text"
         class="form-control"
         placeholder="Escolha um nome de usuário"
       />
+      <app-message
+        class="input-group"
+        *ngIf="
+        newUserForm.get('userName')?.errors?.['lowerCase'] &&
+        newUserForm.get('userName')?.touched"
+        message="Usuário deve estar em letra minúscula"
+      ></app-message>
+      <app-message
+        class="input-group"
+        *ngIf="newUserForm.get('userName')?.errors?.['required'] && newUserForm.get('userName')?.touched"
+        message="Usuário obrigatório"
+      ></app-message>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Nome</span>
-      <input type="text" class="form-control" placeholder="Seu nome completo" />
+      <input
+        formControlName="fullName"
+        type="text"
+        class="form-control"
+        placeholder="Seu nome completo"
+      />
+      <app-message
+        class="input-group"
+        *ngIf="
+          newUserForm.get('fullName')?.errors &&
+          newUserForm.get('fullName')?.touched
+        "
+        message="Nome incorreto"
+      ></app-message>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">@</span>
       <input
+        formControlName="email"
         type="email"
         class="form-control"
         placeholder="Insira um e-mail válido"
       />
+      <app-message
+        class="input-group"
+        *ngIf="newUserForm.get('email')?.errors?.['required'] && newUserForm.get('email')?.touched"
+        message="E-mail obrigatório"
+      ></app-message>
+      <app-message
+        class="input-group"
+        *ngIf="newUserForm.get('email')?.errors?.['email'] && newUserForm.get('email')?.touched"
+        message="E-mail no formato incorreto"
+      ></app-message>
     </div>
     <div class="form-group input-group mb-3">
       <span class="input-group-text" id="basic-addon1">Senha</span>
       <input
+        formControlName="password"
         type="password"
         class="form-control"
         placeholder="Escolha sua senha"
