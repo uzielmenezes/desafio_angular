@@ -1,17 +1,22 @@
-<header class="sticky-top">
-  <nav class="navbar navbar-light bg-white">
-    <a class="navbar-brand">Ford</a>
-    <div *ngIf="user$ | async as user">
-      <div *ngIf="user.name; else login">
-        <i class="fa fa-user-circle mr-1"></i>
-        <a class="mr-1">{{user.name}}</a>
-        <a (click)="logout()">Logout</a>
-      </div>
+<nav class="navbar bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="assets/img/ford.png" alt="" width="7%" height="7%">
+    </a>
+  </div>
+  <div *ngIf="user$ | async as user">
+    <div class="fs-5 p-4" *ngIf="user.name; else login">
+      <i class="fa fa-user-circle text-primary"></i>
+      <span class="text-decoration-none m-2 text-primary">{{user.name}}</span>
+      <a class="text-decoration-none m-1" (click)="logout()">
+        <button type="button" class="btn btn-primary btn-sm">Logout</button>
+      </a>
     </div>
-  </nav>
-  <ng-template #login>
-    <span class="navbar-text">
-      <a [routerLink]="['']">Login</a>
-    </span>
-  </ng-template>
-</header>
+  </div>
+</nav>
+<ng-template #login>
+  <span class="fs-5  p-4">
+    <i class="fa fa-user-circle text-primary"></i>
+    <a class="text-decoration-none text-primary m-2" [routerLink]="['']">Login</a>
+  </span>
+</ng-template>
