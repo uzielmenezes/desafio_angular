@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './authentication/authentication.guard';
 
 const routes: Routes = [
   {
@@ -13,8 +14,10 @@ const routes: Routes = [
   },
   {
     path: 'userpage',
-    loadChildren: ()=> import('./userpage/userpage.module').then((m)=> m.UserpageModule)
-  }
+    loadChildren: () =>
+      import('./userpage/userpage.module').then((m) => m.UserpageModule),
+    canLoad: [AuthenticationGuard],
+  },
 ];
 
 @NgModule({
