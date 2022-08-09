@@ -1,0 +1,12 @@
+<div [ngClass]="{ 'active-menu': showAlert }">
+  <div class="menu-bar">
+    <i
+      class="fa fa-window-close mb-4"
+      (click)="popAlert()"
+      (keyup.space)="popAlert()"
+    >
+    </i>
+    <ng-content></ng-content>
+  </div>
+  <div class="overlay" (click)="popAlert()"></div>
+</div>

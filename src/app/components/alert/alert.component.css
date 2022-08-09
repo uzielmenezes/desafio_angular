@@ -1,0 +1,18 @@
+.menu-bar {
+  height: 30vh;
+  width: 40vw;
+  padding: 1em;
+  background-color: rgba(255,255,255, .8);
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  position: absolute;
+}
+
+.active-menu .menu-bar {
+  display: none;
+}
+
