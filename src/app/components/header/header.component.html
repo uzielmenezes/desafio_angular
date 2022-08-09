@@ -1,11 +1,22 @@
-<nav class="navbar bg-light">
-  <div class="container">
+<nav class="navbar bg-light d-flex flex-nowrap">
+  <div class="container d-flex flex-nowrap">
+    <i class="fa fa-bars m-4" (click)="menu.openMenu()" (keyup.space)="menu.openMenu()"></i>
     <a class="navbar-brand" href="#">
-      <img src="assets/img/ford.png" alt="" width="7%" height="7%">
+      <img id="ford" src="assets/img/ford.png" alt="" width="7%" height="7%">
     </a>
   </div>
+  <app-menu #menu>
+    <ul class="list-unstyled">
+      <li>
+        <a class="text-decoration-none" [routerLink]="['userpage']">Página do Usuário</a>
+      </li>
+      <li>
+        <a class="text-decoration-none" [routerLink]="['dashboard']">Dashboard</a>
+      </li>
+    </ul>
+  </app-menu>
   <div *ngIf="user$ | async as user">
-    <div class="fs-5 p-4" *ngIf="user.name; else login">
+    <div class="fs-5 p-4 d-flex flex-nowrap align-items-center" *ngIf="user.name; else login">
       <i class="fa fa-user-circle text-primary"></i>
       <span class="text-decoration-none m-2 text-primary">{{user.name}}</span>
       <a class="text-decoration-none m-1" (click)="logout()">
