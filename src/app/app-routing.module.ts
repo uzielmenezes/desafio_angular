@@ -18,6 +18,11 @@ const routes: Routes = [
       import('./userpage/userpage.module').then((m) => m.UserpageModule),
     canLoad: [AuthenticationGuard],
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
+  },
 ];
 
 @NgModule({
