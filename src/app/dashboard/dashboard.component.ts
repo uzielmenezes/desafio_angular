@@ -8,7 +8,7 @@ import { VehicleService } from './vehicle/vehicle.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  vehicleList: Vehicles;
+  vehicleList: Vehicles = [];
 
   constructor(private vehicleServvice: VehicleService) {}
 
