@@ -7,7 +7,12 @@ import { VehicleVinComponent } from './vehicle-vin/vehicle-vin.component';
 import { VehicleImageComponent } from './vehicle-image/vehicle-image.component';
 
 @NgModule({
-  declarations: [DashboardComponent, VehicleCardsComponent, VehicleVinComponent, VehicleImageComponent],
+  declarations: [
+    DashboardComponent,
+    VehicleCardsComponent,
+    VehicleVinComponent,
+    VehicleImageComponent,
+  ],
   imports: [CommonModule, DashboardRoutingModule],
 })
 export class DashboardModule {}

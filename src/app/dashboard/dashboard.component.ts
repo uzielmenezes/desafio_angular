@@ -10,33 +10,7 @@ import { VehicleService } from './vehicle/vehicle.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  vehicleList: Vehicles = [];
-  vehicleDataList: VehiclesData = [];
+  constructor() {}
 
-  constructor(
-    private vehicleService: VehicleService,
-    private vehicleDataService: VehicleDataService
-  ) {}
-
-  ngOnInit(): void {
-    this.vehicleService.getVehicles().subscribe({
-      next: (data: any) => {
-        this.vehicleList = data['vehicles'];
-      },
-      error: (err) => {
-        alert('Ocorreu um erro!!');
-        console.log(err);
-      },
-    });
-
-    this.vehicleDataService.getVehiclesData().subscribe({
-      next: (data: any) => {
-        this.vehicleList = data['vehicleData'];
-      },
-      error: (err) => {
-        alert('Ocorreu um erro!!');
-        console.log(err);
-      },
-    });
-  }
+  ngOnInit(): void {}
 }

@@ -5,7 +5,7 @@
       <div class="card-body">
         <select>
           <option> -- Select --</option>
-          <option></option>
+          <option [value]="vehicle.id" *ngFor="let vehicle of vehicleList"></option>
         </select>
       </div>
     </div>
