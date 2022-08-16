@@ -1,3 +1,5 @@
+export interface VehiclesData extends Array<VehicleData> {}
+
 export interface VehicleData {
   id: number;
   vin: any;
@@ -8,4 +10,8 @@ export interface VehicleData {
   fuelLevel: any;
   lat: any;
   long: any;
+}
+
+export interface VehiclesDataAPI {
+  vehicles: VehiclesData;
 }

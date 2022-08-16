@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private vehicleServvice: VehicleService) {}
 
   ngOnInit(): void {
-    this.vehicleServvice.getVehicle().subscribe({
+    this.vehicleServvice.getVehicles().subscribe({
       next: (data: any) => {
         this.vehicleList = data['vehicles'];
       },
