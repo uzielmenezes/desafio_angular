@@ -11,7 +11,7 @@ const API = environment.apiURL;
 export class VehicleService {
   constructor(private httpClient: HttpClient) {}
 
-  getVehiclesData(valor?: string) {
+  getVehicles(valor?: string) {
     const params = valor ? new HttpParams().append('valor', valor) : undefined;
     return this.httpClient
       .get<VehiclesAPI>(`${API}/vehicleData`, { params })
