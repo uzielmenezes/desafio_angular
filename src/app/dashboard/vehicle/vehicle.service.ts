@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { Vehicle, Vehicles, VehiclesAPI } from 'src/app/models/vehicle.model';
+import { map } from 'rxjs';
+import { VehiclesAPI } from 'src/app/models/vehicle.model';
 import { environment } from 'src/environments/environment';
 
 const API = environment.apiURL;
