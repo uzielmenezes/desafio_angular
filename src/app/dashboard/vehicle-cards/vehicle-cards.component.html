@@ -5,13 +5,14 @@
       <div class="card-body">
         <select>
           <option> -- Select --</option>
-          <option [value]="vehicle.id" *ngFor="let vehicle of vehicleList"></option>
+          <option [value]="vehicle.id" *ngFor="let vehicle of vehicleList">{{vehicle.vehicle}}</option>
         </select>
       </div>
     </div>
     <div class="card text-bg-light mb-3 col" style="width: 19em;">
       <div class="card-header title">Total de Vendas</div>
       <div class="card-body">
+        <span></span>
         <p>Unid.</p>
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
-import { VehiclesAPI } from 'src/app/models/vehicle.model';
+import { map, Observable } from 'rxjs';
+import { Vehicles } from 'src/app/models/vehicle.model';
 import { environment } from 'src/environments/environment';
 
 const API = environment.apiURL;
@@ -11,10 +11,7 @@ const API = environment.apiURL;
 export class VehicleService {
   constructor(private httpClient: HttpClient) {}
 
-  getVehicles(valor?: string) {
-    const params = valor ? new HttpParams().append('valor', valor) : undefined;
-    return this.httpClient
-      .get<VehiclesAPI>(`${API}/vehicles`, { params })
-      .pipe(map((resp) => resp.vehicles));
+  getVehicles(): Observable<any[]> {
+    return this.httpClient.get<Vehicles[]>(`${API}/vehicle`);
   }
 }
