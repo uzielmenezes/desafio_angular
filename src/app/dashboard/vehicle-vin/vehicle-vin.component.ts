@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { VehicleData } from 'src/app/models/vehicleData.model';
+import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { merge, switchMap } from 'rxjs';
 import { VehicleDataService } from '../vehicle/vehicle-data.service';
 
 @Component({
@@ -7,20 +8,17 @@ import { VehicleDataService } from '../vehicle/vehicle-data.service';
   templateUrl: './vehicle-vin.component.html',
   styleUrls: ['./vehicle-vin.component.css'],
 })
-export class VehicleVinComponent implements OnInit {
-  vehicleDataList: VehicleData[] = [];
+export class VehicleVinComponent {
+  vehiclesDataInput = new FormControl();
+
+  allVehicleData$ = this.vehicleDataService.getVehiclesData().pipe();
+
+  filterThroughInput$ = this.vehiclesDataInput.valueChanges.pipe(
+    switchMap((selectValue) =>
+      this.vehicleDataService.getVehiclesData(selectValue)
+    )
+  );
+  vehiclesData$ = merge(this.allVehicleData$, this.filterThroughInput$);
 
   constructor(private vehicleDataService: VehicleDataService) {}
-
-  ngOnInit(): void {
-    this.vehicleDataService.getVehiclesData().subscribe({
-      next: (data: any) => {
-        this.vehicleDataList = data['vehicleData'];
-      },
-      error: (err) => {
-        alert('Ocorreu um erro!!');
-        console.log(err);
-      },
-    });
-  }
 }
