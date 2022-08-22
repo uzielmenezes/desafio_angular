@@ -11,6 +11,7 @@ import { VehicleDataService } from '../vehicle/vehicle-data.service';
 export class VehicleVinComponent {
   vehiclesDataInput = new FormControl();
 
+  selected = '2FRHDUYS2Y63NHD22454';
   allVehicleData$ = this.vehicleDataService.getVehiclesData().pipe();
 
   filterThroughInput$ = this.vehiclesDataInput.valueChanges.pipe(

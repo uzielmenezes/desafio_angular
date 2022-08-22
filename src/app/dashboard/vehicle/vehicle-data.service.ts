@@ -15,6 +15,6 @@ export class VehicleDataService {
     const params = valor ? new HttpParams().append('valor', valor) : undefined;
     return this.httpClient
       .get<VehiclesDataAPI>(`${API}/vehicleData`, { params })
-      .pipe(map((resp) => resp.vehiclesData));
+      .pipe(map((resp) => resp.vehicleData));
   }
 }

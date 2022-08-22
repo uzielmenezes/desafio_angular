@@ -1,17 +1,17 @@
 export interface VehiclesData extends Array<VehicleData> {}
 
 export interface VehicleData {
-  id: number;
-  vin: any;
-  odometer: any;
-  tirePressure: any;
-  status: any;
-  batteryStatus: any;
-  fuelLevel: any;
-  lat: any;
-  long: any;
+  id: number | string;
+  vin: number | string;
+  odometer: number | string;
+  tirePressure: number | string;
+  status: string;
+  batteryStatus: string;
+  fuelLevel: number | string;
+  lat: number | string;
+  long: number | string;
 }
 
 export interface VehiclesDataAPI {
-  vehiclesData: VehiclesData;
+  vehicleData: VehiclesData;
 }

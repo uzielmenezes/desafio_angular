@@ -10,27 +10,16 @@
         <th scope="col">Long.</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="vehiclesData$ | async as vehiclesData">
       <tr>
         <th></th>
-        <ng-template>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-        </ng-template>
-      </tr>
+    	  <td><input type="text" name="search" value="2FRHDUYS2Y63NHD22654" [formControl]="vehiclesDataInput"></td>
+        <td *ngFor="let vehicleData of vehiclesData">{{vehicleData.odometer}}</td>
+        <td *ngFor="let vehicleData of vehiclesData">{{vehicleData.fuelLevel}}</td>
+        <td *ngFor="let vehicleData of vehiclesData">{{vehicleData.status}}</td>
+        <td *ngFor="let vehicleData of vehiclesData">{{vehicleData.lat}}</td>
+        <td *ngFor="let vehicleData of vehiclesData">{{vehicleData.long}}</td>
+     </tr>
     </tbody>
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
   </table>
 </div>
