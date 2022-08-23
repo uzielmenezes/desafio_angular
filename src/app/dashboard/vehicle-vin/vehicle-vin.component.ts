@@ -1,7 +1,16 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { merge, switchMap } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  merge,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { VehicleDataService } from '../vehicle/vehicle-data.service';
+
+const WAIT_INPUT = 300;
 
 @Component({
   selector: 'app-vehicle-vin',
@@ -10,11 +19,12 @@ import { VehicleDataService } from '../vehicle/vehicle-data.service';
 })
 export class VehicleVinComponent {
   vehiclesDataInput = new FormControl();
-
-  selected = '2FRHDUYS2Y63NHD22454';
   allVehicleData$ = this.vehicleDataService.getVehiclesData().pipe();
 
   filterThroughInput$ = this.vehiclesDataInput.valueChanges.pipe(
+    debounceTime(WAIT_INPUT),
+    filter((InputValue) => InputValue.length >= 3 || InputValue.length),
+    distinctUntilChanged(),
     switchMap((selectValue) =>
       this.vehicleDataService.getVehiclesData(selectValue)
     )
