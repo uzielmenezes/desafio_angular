@@ -10,36 +10,24 @@
     </div>
     <div class="card text-bg-light mb-3 col" style="width: 19em;">
       <div class="card-header title">Total de Vendas</div>
-      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles; else rangerVolume">
-        <span *ngFor="let vehicle of vehicles" >{{vehicle.volumetotal}}</span>
+      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles;">
+        <span class="span text-primary" *ngFor="let vehicle of vehicles" >{{vehicle.volumetotal}}</span>
         <p>Unid.</p>
       </div>
-      <ng-template #rangerVolume>
-        <span>145760</span>
-        <p>Unid.</p>
-      </ng-template>
     </div>
     <div class="card text-bg-light mb-3 col" style="width: 19em;">
       <div class="card-header title">Conectados</div>
-      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles; else rangerConnected">
-        <span *ngFor="let vehicle of vehicles" >{{vehicle.connected}}</span>
+      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles;">
+        <span class="span text-primary" *ngFor="let vehicle of vehicles" >{{vehicle.connected}}</span>
         <p>Unid.</p>
       </div>
-      <ng-template #rangerConnected>
-        <span>70000</span>
-        <p>Unid.</p>
-      </ng-template>
     </div>
     <div class="card text-bg-light mb-3 col" style="width: 19em;">
       <div class="card-header title">Update Software</div>
-      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles; else rangerUpdate">
-        <span *ngFor="let vehicle of vehicles" >{{vehicle.softwareUpdates}}</span>
+      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles;">
+        <span  class="span text-primary" *ngFor="let vehicle of vehicles" >{{vehicle.softwareUpdates}}</span>
         <p>Unid.</p>
       </div>
-      <ng-template #rangerUpdate>
-        <span>27550</span>
-        <p>Unid.</p>
-      </ng-template>
     </div>
   </div>
 </div>
@@ -47,5 +35,5 @@
   <img class="img-fluid" [src]="imgUrl"  width="75%" height="35%" alt="Foto de um Veículo">
 </div>
 <ng-template #emptyList>
-  <h2 class="text-center">Nenhum veículo cadastrado</h2>
+  <h2 class="text-center text-danger">Nenhum veículo cadastrado</h2>
 </ng-template>

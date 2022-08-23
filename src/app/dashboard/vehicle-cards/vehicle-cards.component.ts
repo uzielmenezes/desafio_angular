@@ -10,7 +10,7 @@ import { VehicleService } from '../vehicle/vehicle.service';
 })
 export class VehicleCardsComponent {
   vehiclesInput = new FormControl();
-  selected = 'Ranger';
+  selected = '';
   imgUrl = 'assets/img/Ranger.png';
   allVehicles$ = this.vehicleService.getVehicles().pipe();
 
@@ -25,6 +25,5 @@ export class VehicleCardsComponent {
   changeFn(e: any) {
     this.selected = e.target.value;
     this.imgUrl = `assets/img/${this.selected}.png`;
-    console.log(this.imgUrl);
   }
 }
