@@ -1,0 +1,7 @@
+.bg-primary tr {
+  color: white;
+}
+
+tbody tr {
+  font-weight: bold;
+}
