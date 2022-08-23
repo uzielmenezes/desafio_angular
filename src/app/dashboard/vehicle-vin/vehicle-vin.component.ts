@@ -6,7 +6,6 @@ import {
   filter,
   merge,
   switchMap,
-  tap,
 } from 'rxjs';
 import { VehicleDataService } from '../vehicle/vehicle-data.service';
 
