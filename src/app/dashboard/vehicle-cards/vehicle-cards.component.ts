@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { merge, switchMap } from 'rxjs';
 import { Vehicle } from 'src/app/models/vehicle.model';
 import { VehicleData } from 'src/app/models/vehicleData.model';
 import { VehicleService } from '../vehicle/vehicle.service';
