@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { VehicleCardsComponent } from './vehicle-cards/vehicle-cards.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { VehicleVinComponent } from './vehicle-vin/vehicle-vin.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    VehicleCardsComponent,
-    VehicleVinComponent,
+  declarations: [DashboardComponent, VehicleCardsComponent],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  imports: [CommonModule, DashboardRoutingModule, ReactiveFormsModule],
 })
 export class DashboardModule {}

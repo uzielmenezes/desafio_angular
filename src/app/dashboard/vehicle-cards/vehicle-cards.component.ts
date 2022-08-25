@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { merge, switchMap } from 'rxjs';
+import { Vehicle } from 'src/app/models/vehicle.model';
+import { VehicleData } from 'src/app/models/vehicleData.model';
 import { VehicleService } from '../vehicle/vehicle.service';
 
 @Component({
@@ -9,21 +11,23 @@ import { VehicleService } from '../vehicle/vehicle.service';
   styleUrls: ['./vehicle-cards.component.css'],
 })
 export class VehicleCardsComponent {
-  vehiclesInput = new FormControl();
-  selected = '';
-  imgUrl = 'assets/img/Ranger.png';
-  allVehicles$ = this.vehicleService.getVehicles().pipe();
+  vehicles: Vehicle[] = [];
+  selectedVehicleId: number = 0;
+  selectedVehicle: Vehicle = {};
+  selectedVehicleDetails: VehicleData = {};
 
-  filterThroughInput$ = this.vehiclesInput.valueChanges.pipe(
-    switchMap((selectValue) => this.vehicleService.getVehicles(selectValue))
-  );
+  // quando a pagina carrega, inicia a busca pelos carros, ao finalizar atribui na variavel vehicles, usada para renderizar o select
+  constructor(private vehicleService: VehicleService) {
+    this.vehicleService
+      .getVehicles()
+      .subscribe((vehicles) => (this.vehicles = vehicles));
+  }
 
-  vehicles$ = merge(this.allVehicles$, this.filterThroughInput$);
-
-  constructor(private vehicleService: VehicleService) {}
-
-  changeFn(e: any) {
-    this.selected = e.target.value;
-    this.imgUrl = `assets/img/${this.selected}.png`;
+  // quando muda o select busca os detalhes do carro selecionado e atribui na variavel selectedVehicleDetails
+  onChange(vehicleId: number) {
+    this.selectedVehicle = this.vehicles[vehicleId - 1];
+    this.vehicleService
+      .getVehicleData(vehicleId)
+      .subscribe((vehicle) => (this.selectedVehicleDetails = vehicle));
   }
 }

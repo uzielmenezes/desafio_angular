@@ -1,39 +1,88 @@
-<div class="container">
-  <div class="row" *ngIf="allVehicles$ | async as vehicles; else emptyList">
-    <div class="card text-bg-light mb-3 col" style="width: 19em;">
-      <div class="card-header title">Veículo</div>
-      <div class="card-body">
-        <select class="form-control form-select" [value]="selected" (change)="changeFn($event)" [formControl]="vehiclesInput">
-          <option *ngFor="let vehicle of vehicles">{{vehicle.vehicle}}</option>
-        </select>
+<div class="container-fluid">
+  <div class="row">
+      <div class="col">
+          <div class="card text-bg-light mb-3 col" style="width: 19em;">
+              <div class="card-header title">
+                  <h2>Veículo</h2>
+              </div>
+              <div class="card-body">
+                <select class="form-control form-select" [ngModel]="selectedVehicleId" (ngModelChange)="onChange($event)" name="vehicle" id="vehicle">
+                  <option disabled selected >Selecione um veículo </option>
+                  <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+                    {{ vehicle.vehicle }}
+                 </option>
+                </select>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="card text-bg-light mb-3 col" style="width: 19em;">
-      <div class="card-header title">Total de Vendas</div>
-      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles;">
-        <span class="span text-primary" *ngFor="let vehicle of vehicles" >{{vehicle.volumetotal}}</span>
-        <p>Unid.</p>
+      <div class="col">
+          <div class="card text-bg-light mb-3 col" style="width: 19em;">
+              <div class="card-header title">
+                  <h2>Total de Vendas</h2>
+              </div>
+              <div class="card-body">
+                  <span class="span text-primary"> {{selectedVehicle.volumetotal ?? 0  }} </span>
+                  <p class="unid">Unid.</p>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="card text-bg-light mb-3 col" style="width: 19em;">
-      <div class="card-header title">Conectados</div>
-      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles;">
-        <span class="span text-primary" *ngFor="let vehicle of vehicles" >{{vehicle.connected}}</span>
-        <p>Unid.</p>
+      <div class="col">
+          <div class="card text-bg-light mb-3 col" style="width: 19em;">
+              <div class="card-header title">
+                  <h2>Conectados</h2>
+              </div>
+              <div class="card-body">
+                  <span class="span text-primary"> {{selectedVehicle.connected ?? 0 }} </span>
+                  <p class="unid">Unid.</p>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="card text-bg-light mb-3 col" style="width: 19em;">
-      <div class="card-header title">Update Software</div>
-      <div class="card-body" *ngIf="filterThroughInput$ | async as vehicles;">
-        <span  class="span text-primary" *ngFor="let vehicle of vehicles" >{{vehicle.softwareUpdates}}</span>
-        <p>Unid.</p>
+      <div class="col">
+          <div class="card text-bg-light mb-3 col" style="width: 22em;">
+              <div class="card-header title">
+                  <h2>Update de Software</h2>
+              </div>
+              <div class="card-body">
+                  <span class="span text-primary"> {{selectedVehicle.softwareUpdates ?? 0}} </span>
+                  <p class="unid">Unid.</p>
+              </div>
+          </div>
       </div>
-    </div>
+  </div>
+  <div class="row">
+      <div class="text-center">
+          <img class="img-fluid" *ngIf="selectedVehicle.vehicle" src="../../assets/img/{{selectedVehicle.vehicle}}.png" alt="Imagem do carro selecionado">
+      </div>
+  </div>
+
+  <div class="container-fluid">
+    <table class="table" *ngIf="selectedVehicle.vehicle">
+        <thead class="bg-primary">
+            <th scope="col">Código - Vin</th>
+            <th scope="col">Odômetro</th>
+            <th scope="col">Nível de Combustível</th>
+            <th scope="col">Status</th>
+            <th scope="col">Lat.</th>
+            <th scope="col">Long.</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" value="{{selectedVehicleDetails.vin ?? '' }}"></td>
+                <td> {{selectedVehicleDetails.odometer ?? '' }} Km</td>
+                <td> {{selectedVehicleDetails.fuelLevel ?? '' }} %</td>
+                <td> {{selectedVehicleDetails.status ?? '' }} </td>
+                <td> {{selectedVehicleDetails.lat ?? '' }}</td>
+                <td> {{selectedVehicleDetails.long ?? '' }} </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tfoot>
+    </table>
   </div>
 </div>
-<div class="text-center">
-  <img class="img-fluid" [src]="imgUrl"  width="75%" height="35%" alt="Foto de um Veículo">
-</div>
-<ng-template #emptyList>
-  <h2 class="text-center text-danger">Nenhum veículo cadastrado</h2>
-</ng-template>
