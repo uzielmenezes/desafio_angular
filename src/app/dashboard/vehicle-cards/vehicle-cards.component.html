@@ -1,9 +1,9 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row mb-5">
       <div class="col">
           <div class="card text-bg-light mb-3 col" style="width: 19em;">
               <div class="card-header title">
-                  <h2>Veículo</h2>
+                  <h2 class="text-primary" >Veículo</h2>
               </div>
               <div class="card-body">
                 <select class="form-control form-select" [ngModel]="selectedVehicleId" (ngModelChange)="onChange($event)" name="vehicle" id="vehicle">
@@ -18,7 +18,7 @@
       <div class="col">
           <div class="card text-bg-light mb-3 col" style="width: 19em;">
               <div class="card-header title">
-                  <h2>Total de Vendas</h2>
+                  <h2 class="text-primary">Total de Vendas</h2>
               </div>
               <div class="card-body">
                   <span class="span text-primary"> {{selectedVehicle.volumetotal ?? 0  }} </span>
@@ -29,7 +29,7 @@
       <div class="col">
           <div class="card text-bg-light mb-3 col" style="width: 19em;">
               <div class="card-header title">
-                  <h2>Conectados</h2>
+                  <h2 class="text-primary">Conectados</h2>
               </div>
               <div class="card-body">
                   <span class="span text-primary"> {{selectedVehicle.connected ?? 0 }} </span>
@@ -40,7 +40,7 @@
       <div class="col">
           <div class="card text-bg-light mb-3 col" style="width: 22em;">
               <div class="card-header title">
-                  <h2>Update de Software</h2>
+                  <h2 class="text-primary">Update de Software</h2>
               </div>
               <div class="card-body">
                   <span class="span text-primary"> {{selectedVehicle.softwareUpdates ?? 0}} </span>
@@ -51,13 +51,12 @@
   </div>
   <div class="row">
       <div class="text-center">
-          <img class="img-fluid" *ngIf="selectedVehicle.vehicle" src="../../assets/img/{{selectedVehicle.vehicle}}.png" alt="Imagem do carro selecionado">
+          <img class="img-fluid mb-3" *ngIf="selectedVehicle.vehicle" src="../../assets/img/{{selectedVehicle.vehicle}}.png" alt="Imagem do carro selecionado">
       </div>
   </div>
-
   <div class="container-fluid">
     <table class="table" *ngIf="selectedVehicle.vehicle">
-        <thead class="bg-primary">
+        <thead class="tanble-h bg-primary">
             <th scope="col">Código - Vin</th>
             <th scope="col">Odômetro</th>
             <th scope="col">Nível de Combustível</th>
@@ -67,12 +66,12 @@
         </thead>
         <tbody>
             <tr>
-                <td><input type="text" value="{{selectedVehicleDetails.vin ?? '' }}"></td>
-                <td> {{selectedVehicleDetails.odometer ?? '' }} Km</td>
-                <td> {{selectedVehicleDetails.fuelLevel ?? '' }} %</td>
-                <td> {{selectedVehicleDetails.status ?? '' }} </td>
-                <td> {{selectedVehicleDetails.lat ?? '' }}</td>
-                <td> {{selectedVehicleDetails.long ?? '' }} </td>
+                <td><input disabled type="text" value="{{selectedVehicleData.vin ?? '' }}"></td>
+                <td> {{selectedVehicleData.odometer ?? '' }} Km</td>
+                <td> {{selectedVehicleData.fuelLevel ?? '' }} %</td>
+                <td> {{selectedVehicleData.status ?? '' }} </td>
+                <td> {{selectedVehicleData.lat ?? '' }}</td>
+                <td> {{selectedVehicleData.long ?? '' }} </td>
             </tr>
         </tbody>
         <tfoot>
