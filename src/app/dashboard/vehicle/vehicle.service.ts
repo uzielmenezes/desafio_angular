@@ -14,7 +14,7 @@ export class VehicleService {
 
   getVehicles(): Observable<any> {
     return this.httpClient
-      .get<any>(this.API + '/vehicle')
+      .get<any>(`${this.API}/vehicle`)
       .pipe(map((vehicle) => vehicle.vehicles));
   }
 
