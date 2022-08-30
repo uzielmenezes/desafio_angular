@@ -67,7 +67,7 @@
         <tbody *ngIf="vehicleData$ | async as vehiclesData">
             <tr *ngFor= "let vehicleData of vehiclesData | paginate: { itemsPerPage: 1, currentPage: page }">
                 <td><input type="text" [ngModel]="vin" (ngModelChange)="modelChange($event)" [formControl]="vehicleDataInput"></td>
-                <td> {{vehicleData.odometer }} Km</td>
+                <td> {{vehicleData.odometer ?? ''}} Km</td>
                 <td> {{vehicleData.fuelLevel ?? '' }} %</td>
                 <td> {{vehicleData.status ?? '' }} </td>
                 <td> {{vehicleData.lat ?? '' }}</td>
