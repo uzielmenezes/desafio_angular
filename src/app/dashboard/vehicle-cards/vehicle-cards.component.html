@@ -64,14 +64,14 @@
             <th scope="col">Lat.</th>
             <th scope="col">Long.</th>
         </thead>
-        <tbody>
-            <tr>
-                <td><input disabled type="text" value="{{selectedVehicleData.vin ?? '' }}"></td>
-                <td> {{selectedVehicleData.odometer ?? '' }} Km</td>
-                <td> {{selectedVehicleData.fuelLevel ?? '' }} %</td>
-                <td> {{selectedVehicleData.status ?? '' }} </td>
-                <td> {{selectedVehicleData.lat ?? '' }}</td>
-                <td> {{selectedVehicleData.long ?? '' }} </td>
+        <tbody *ngIf="vehicleData$ | async as vehiclesData">
+            <tr *ngFor= "let vehicleData of vehiclesData | paginate: { itemsPerPage: 1, currentPage: page }">
+                <td><input type="text" [ngModel]="vin" (ngModelChange)="modelChange($event)" [formControl]="vehicleDataInput"></td>
+                <td> {{vehicleData.odometer }} Km</td>
+                <td> {{vehicleData.fuelLevel ?? '' }} %</td>
+                <td> {{vehicleData.status ?? '' }} </td>
+                <td> {{vehicleData.lat ?? '' }}</td>
+                <td> {{vehicleData.long ?? '' }} </td>
             </tr>
         </tbody>
         <tfoot>

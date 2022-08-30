@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, pluck } from 'rxjs';
+import { VehiclesDataAPI } from 'src/app/models/vehicleData.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,7 +18,10 @@ export class VehicleService {
       .pipe(map((vehicle) => vehicle.vehicles));
   }
 
-  getVehicleData(vehicleId: number): Observable<any> {
-    return this.httpClient.get<any>(this.API + '/vehicledata/' + vehicleId);
+  getVehicleData(valor?: any) {
+    const params = valor ? new HttpParams().append('valor', valor) : undefined;
+    return this.httpClient
+      .get<VehiclesDataAPI>(`${this.API}/vehicleData`, { params })
+      .pipe(pluck('vehicleData'));
   }
 }
