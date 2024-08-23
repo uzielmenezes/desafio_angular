@@ -1,87 +1,111 @@
 <div class="container-fluid">
   <div class="row mb-5">
-      <div class="col">
-          <div class="card text-bg-light mb-3 col" style="width: 19em;">
-              <div class="card-header title">
-                  <h2 class="text-primary" >Veículo</h2>
-              </div>
-              <div class="card-body">
-                <select class="form-control form-select" [ngModel]="selectedVehicleId" (ngModelChange)="onChange($event)" name="vehicle" id="vehicle">
-                  <option disabled selected >Selecione um veículo </option>
-                  <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
-                    {{ vehicle.vehicle }}
-                 </option>
-                </select>
-              </div>
-          </div>
+    <div class="col">
+      <div class="card text-bg-light mb-3 col" style="width: 19em">
+        <div class="card-header title">
+          <h2 class="text-primary">Veículo</h2>
+        </div>
+        <div class="card-body">
+          <select
+            class="form-control form-select"
+            [ngModel]="selectedVehicleId"
+            (ngModelChange)="onChange($event)"
+            name="vehicle"
+            id="vehicle"
+          >
+            <option disabled selected>Selecione um veículo</option>
+            <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+              {{ vehicle.vehicle }}
+            </option>
+          </select>
+        </div>
       </div>
-      <div class="col">
-          <div class="card text-bg-light mb-3 col" style="width: 19em;">
-              <div class="card-header title">
-                  <h2 class="text-primary">Total de Vendas</h2>
-              </div>
-              <div class="card-body">
-                  <span class="span text-primary"> {{selectedVehicle.volumetotal ?? 0  }} </span>
-                  <p class="unid">Unid.</p>
-              </div>
-          </div>
+    </div>
+    <div class="col">
+      <div class="card text-bg-light mb-3 col" style="width: 19em">
+        <div class="card-header title">
+          <h2 class="text-primary">Total de Vendas</h2>
+        </div>
+        <div class="card-body">
+          <span class="span text-primary">
+            {{ selectedVehicle.volumetotal ?? 0 }}
+          </span>
+          <p class="unid">Unid.</p>
+        </div>
       </div>
-      <div class="col">
-          <div class="card text-bg-light mb-3 col" style="width: 19em;">
-              <div class="card-header title">
-                  <h2 class="text-primary">Conectados</h2>
-              </div>
-              <div class="card-body">
-                  <span class="span text-primary"> {{selectedVehicle.connected ?? 0 }} </span>
-                  <p class="unid">Unid.</p>
-              </div>
-          </div>
+    </div>
+    <div class="col">
+      <div class="card text-bg-light mb-3 col" style="width: 19em">
+        <div class="card-header title">
+          <h2 class="text-primary">Conectados</h2>
+        </div>
+        <div class="card-body">
+          <span class="span text-primary">
+            {{ selectedVehicle.connected ?? 0 }}
+          </span>
+          <p class="unid">Unid.</p>
+        </div>
       </div>
-      <div class="col">
-          <div class="card text-bg-light mb-3 col" style="width: 22em;">
-              <div class="card-header title">
-                  <h2 class="text-primary">Update de Software</h2>
-              </div>
-              <div class="card-body">
-                  <span class="span text-primary"> {{selectedVehicle.softwareUpdates ?? 0}} </span>
-                  <p class="unid">Unid.</p>
-              </div>
-          </div>
+    </div>
+    <div class="col">
+      <div class="card text-bg-light mb-3 col" style="width: 22em">
+        <div class="card-header title">
+          <h2 class="text-primary">Update de Software</h2>
+        </div>
+        <div class="card-body">
+          <span class="span text-primary">
+            {{ selectedVehicle.softwareUpdates ?? 0 }}
+          </span>
+          <p class="unid">Unid.</p>
+        </div>
       </div>
+    </div>
   </div>
   <div class="row">
-      <div class="text-center">
-          <img class="img-fluid mb-3" *ngIf="selectedVehicle.vehicle" src="../../assets/img/{{selectedVehicle.vehicle}}.png" alt="Imagem do carro selecionado">
-      </div>
+    <div class="text-center">
+      <img
+        class="img-fluid mb-3"
+        *ngIf="selectedVehicle.vehicle"
+        src="../../assets/img/{{ selectedVehicle.vehicle }}.png"
+        alt="Carro selecionado"
+      />
+    </div>
   </div>
   <div class="container-fluid">
     <table class="table" *ngIf="selectedVehicle.vehicle">
-        <thead class="tanble-h bg-primary">
-            <th scope="col">Código - Vin</th>
-            <th scope="col">Odômetro</th>
-            <th scope="col">Nível de Combustível</th>
-            <th scope="col">Status</th>
-            <th scope="col">Lat.</th>
-            <th scope="col">Long.</th>
-        </thead>
-        <tbody *ngIf="vehicleData$ | async as vehiclesData">
-            <tr *ngFor= "let vehicleData of vehiclesData | paginate: { itemsPerPage: 1, currentPage: page }">
-                <td><input type="text" [ngModel]="vin" (ngModelChange)="modelChange($event)" [formControl]="vehicleDataInput"></td>
-                <td> {{vehicleData.odometer ?? ''}} Km</td>
-                <td> {{vehicleData.fuelLevel ?? '' }} %</td>
-                <td> {{vehicleData.status ?? '' }} </td>
-                <td> {{vehicleData.lat ?? '' }}</td>
-                <td> {{vehicleData.long ?? '' }} </td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tfoot>
+      <thead class="tanble-h bg-primary">
+        <th scope="col">Código - Vin</th>
+        <th scope="col">Odômetro (Km)</th>
+        <th scope="col">Nível de Combustível (%)</th>
+        <th scope="col">Status</th>
+        <th scope="col">Lat.</th>
+        <th scope="col">Long.</th>
+      </thead>
+      <tbody *ngIf="vehicleData$ | async as vehiclesData">
+        <tr
+          *ngFor="
+            let vehicleData of vehiclesData
+              | paginate : { itemsPerPage: 1, currentPage: page }
+          "
+        >
+          <td>
+            <input type="text" [formControl]="vehicleDataInput" />
+          </td>
+          <td>{{ vehicleData.odometer ?? "" }}</td>
+          <td>{{ vehicleData.fuelLevel ?? "" }}</td>
+          <td>{{ vehicleData.status ?? "" }}</td>
+          <td>{{ vehicleData.lat ?? "" }}</td>
+          <td>{{ vehicleData.long ?? "" }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tfoot>
     </table>
   </div>
 </div>
